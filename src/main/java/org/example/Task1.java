@@ -11,12 +11,14 @@ public class Task1 {
             throw new ArrayIndexOutOfBoundsException("Empty List");
         // Создантя обьекта stream из листа
         // Фильтрация стрима, он стравниве классы что бы отфильтровать string-ги
-        return list.stream().filter(x-> !x.getClass().getSimpleName().equals("String")).filter(x-> {// Проверка на наличие негативных элиментов
+        List<Object> filteredList = list.stream().filter(x-> x instanceof Integer).filter(x-> {
+            // Проверка на наличие негативных элиментов
             if((Integer) x < 0)
                 throw new IllegalArgumentException("Negative number was inserted");
             return true;
             //Стрим переводим в лист
         }).collect(Collectors.toList());
+        return filteredList;
 
 
     }
